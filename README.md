@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # httpstat
 
 curl statistics made simple.
@@ -38,3 +39,8 @@ You can pass any curl supported arguments after the url (except for `-w`, `-D`, 
 ```bash
 HTTPSTAT_SHOW_BODY=true python httpstat.py httpbin.org/post -X POST --data-urlencode "a=中文" -v
 ```
+=======
+# EC601
+# EC601
+# EC601
+>>>>>>> bec4aaa8265fe531636b1b575fa61606a112c9be
