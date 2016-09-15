@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 # httpstat
-test test test
+shorttest
 curl statistics made simple.
 
 ![screenshot](screenshot.png)
