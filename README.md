@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # httpstat
 HERE IS A TEST
-
+This is a message.
 curl statistics made simple.
 
 ![screenshot](screenshot.png)
