@@ -20,7 +20,7 @@ import subprocess
 __version__ = '1.1.3'
 
 
-PY3 = sys.version_info >= (3,)
+PY3 = sys.version_info >= (3,)  # judge the python version
 
 if PY3:
     xrange = range
@@ -62,7 +62,7 @@ http_template = """
 """[1:]
 
 
-ISATTY = sys.stdout.isatty()
+ISATTY = sys.stdout.isatty() # returns True if the file is connected (is associated with a terminal device) to a tty(-like) device, else False.
 
 
 def make_color(code):
