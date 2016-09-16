@@ -149,13 +149,15 @@ def main():
     # run cmd
     cmd_env = os.environ.copy()
     cmd_env.update(
-        LC_ALL='C',
+        LC_ALL='C', # override the $language, forces applications to use the default language for output.
     )
-    cmd_core = ['curl', '-w', curl_format, '-D', headerf.name, '-o', bodyf.name, '-s', '-S']
+    cmd_core = ['curl', '-w', curl_format, '-D', headerf.name, '-o', bodyf.name, '-s', '-S'] # curl command to transfer data to or from server. -w:write -D:dump header, write the protocol headers to the specified file. -o:output to a file. -s silent mode, don't show progress meter. -S: show error.
+
     cmd = cmd_core + curl_args + [url]
     #print(cmd)
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=cmd_env)
-    out, err = p.communicate()
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=cmd_env) 
+    out, err = p.communicate() # Send data to stdin, read data from stdout and stderr, until EOF reached. Returns a tuple(stdout_data, stderr_data)
+
     if PY3:
         out, err = out.decode(), err.decode()
 
@@ -163,10 +165,13 @@ def main():
     if p.returncode == 0:
         print(grayscale[16](err))
     else:
+        print("TEST: where to print the _cmd")
+        print("cmd : " + cmd)
         _cmd = list(cmd)
         _cmd[2] = '<output-format>'
         _cmd[4] = '<tempfile>'
         _cmd[6] = '<tempfile>'
+        print(_cmd)
         print('> {}'.format(' '.join(_cmd)))
         quit(yellow('curl error: {}'.format(err)), p.returncode)
 
