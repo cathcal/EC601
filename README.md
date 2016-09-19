@@ -1,7 +1,11 @@
 <<<<<<< HEAD
 # httpstat
+<<<<<<< HEAD
 HERE IS A TEST
 This is a message.
+=======
+shorttest
+>>>>>>> origin/master
 curl statistics made simple.
 
 ![screenshot](screenshot.png)
