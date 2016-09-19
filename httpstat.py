@@ -7,6 +7,7 @@
 # http://blog.kenweiner.com/2014/11/http-request-timings-with-curl.html
 
 # Editing here
+# Trying to add to Caity Branch
 
 from __future__ import print_function
 
@@ -199,10 +200,12 @@ def main():
     for loop, line in enumerate(headers.split('\n')):
         if loop == 0:
             p1, p2 = tuple(line.split('/'))
-            print(green(p1) + grayscale[14]('/') + cyan(p2))
+            #print(magenta(p1) + grayscale[14]('/') + yellow(p2))
+            #Changed colors of 
+            print (magenta(p1) + green('/') + cyan(p2))
         else:
             pos = line.find(':')
-            print(grayscale[14](line[:pos + 1]) + cyan(line[pos + 1:]))
+            print(grayscale[14](line[:pos + 1]) + yellow(line[pos + 1:]))
 
     print()
 
@@ -218,7 +221,7 @@ def main():
         else:
             print(body)
     else:
-        print('{} stored in: {}'.format(green('Body'), bodyf.name))
+        print('{} stored in: {}'.format(cyan('Body'), bodyf.name))
 
     # print stat
     if url.startswith('https://'):
@@ -232,10 +235,10 @@ def main():
     template = '\n'.join(tpl_parts)
 
     def fmta(s):
-        return cyan('{:^7}'.format(str(s) + 'ms'))
+        return yellow('{:^7}'.format(str(s) + 'ms'))
 
     def fmtb(s):
-        return cyan('{:<7}'.format(str(s) + 'ms'))
+        return yellow('{:<7}'.format(str(s) + 'ms'))
 
     stat = template.format(
         # a
