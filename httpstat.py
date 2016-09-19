@@ -118,18 +118,23 @@ Environments:
 
 
 def main():
+
     args = sys.argv[1:]
     if not args:
         print_help()
         quit(None, 0)
 
     url = args[0]
+    need_average_speed = False
     if url in ['-h', '--help']:
         print_help()
         quit(None, 0)
     elif url == '--version':
         print('httpstat {}'.format(__version__))
         quit(None, 0)
+    elif '*m' in url:
+        url.replace('*m', '')
+        need_average_speed = True
 
     curl_args = args[1:]
 
@@ -155,6 +160,7 @@ def main():
 
     cmd = cmd_core + curl_args + [url]
     #print(cmd)
+    
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=cmd_env) 
     out, err = p.communicate() # Send data to stdin, read data from stdout and stderr, until EOF reached. Returns a tuple(stdout_data, stderr_data)
 
@@ -163,6 +169,7 @@ def main():
 
     # print stderr
     if p.returncode == 0:
+        print("error")
         print(grayscale[16](err))
     else:
         print("TEST: where to print the _cmd")
@@ -178,6 +185,8 @@ def main():
     # parse output
     try:
         d = json.loads(out)
+        print(" JSON ")
+        print(d)
     except ValueError as e:
         print(yellow('Could not decode json: {}'.format(e)))
         print('curl result:', p.returncode, grayscale[16](out), grayscale[16](err))
@@ -194,6 +203,7 @@ def main():
         range_server=d['time_starttransfer'] - d['time_pretransfer'],
         range_transfer=d['time_total'] - d['time_starttransfer'],
     )
+    
 
     # print header & body summary
     with open(headerf.name, 'r') as f:
@@ -256,6 +266,12 @@ def main():
         b0003=fmtb(d['time_starttransfer']),
         b0004=fmtb(d['time_total']),
     )
+    with open('./measuredSpeed.txt', 'w') as f:
+        #s =  str(d['range_dns']) + ' '+ str(d['range_connection'])+ ' '+ d['range_ssl'] + ' ' + d['range_server'] + d['range_transfer']
+         #   + '\n' + d['time_namelookup'] + ' ' +  d['time_connect'] +' '+ d['time_pretransfer'] + ' ' + d['time_starttransfer'] + ' '+ d['time_total'] + '\n'
+        s = str(d)
+        f.write(s)
+
     print()
     print(stat)
 

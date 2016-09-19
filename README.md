@@ -40,6 +40,10 @@ You can pass any curl supported arguments after the url (except for `-w`, `-D`, 
 ```bash
 HTTPSTAT_SHOW_BODY=true python httpstat.py httpbin.org/post -X POST --data-urlencode "a=中文" -v
 ```
+You can get the average connection speed by adding *mas after the url which measures the average speed of five times connection.
+```bash
+python httpstat.py httpbin.org/post *mas
+```
 =======
 # EC601
 # EC601
