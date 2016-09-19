@@ -132,11 +132,12 @@ def main():
     elif url == '--version':
         print('httpstat {}'.format(__version__))
         quit(None, 0)
-    elif '*m' in url:
-        url.replace('*m', '')
-        need_average_speed = True
 
     curl_args = args[1:]
+
+    if('*mas' in curl_args):
+        curl_args.remove('*mas')
+        need_average_speed = True
 
     # check curl args
     exclude_options = ['-w', '-D', '-o', '-s']
@@ -160,128 +161,214 @@ def main():
 
     cmd = cmd_core + curl_args + [url]
     #print(cmd)
-    
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=cmd_env) 
-    out, err = p.communicate() # Send data to stdin, read data from stdout and stderr, until EOF reached. Returns a tuple(stdout_data, stderr_data)
-
-    if PY3:
-        out, err = out.decode(), err.decode()
-
-    # print stderr
-    if p.returncode == 0:
-        print("error")
-        print(grayscale[16](err))
-    else:
-        print("TEST: where to print the _cmd")
-        print("cmd : " + cmd)
-        _cmd = list(cmd)
-        _cmd[2] = '<output-format>'
-        _cmd[4] = '<tempfile>'
-        _cmd[6] = '<tempfile>'
-        print(_cmd)
-        print('> {}'.format(' '.join(_cmd)))
-        quit(yellow('curl error: {}'.format(err)), p.returncode)
-
-    # parse output
-    try:
-        d = json.loads(out)
-        print(" JSON ")
-        print(d)
-    except ValueError as e:
-        print(yellow('Could not decode json: {}'.format(e)))
-        print('curl result:', p.returncode, grayscale[16](out), grayscale[16](err))
-        quit(None, 1)
-    for k in d:
-        if k.startswith('time_'):
-            d[k] = int(d[k] * 1000)
-
-    # calculate ranges
-    d.update(
-        range_dns=d['time_namelookup'],
-        range_connection=d['time_connect'] - d['time_namelookup'],
-        range_ssl=d['time_pretransfer'] - d['time_connect'],
-        range_server=d['time_starttransfer'] - d['time_pretransfer'],
-        range_transfer=d['time_total'] - d['time_starttransfer'],
-    )
-    
-
-    # print header & body summary
-    with open(headerf.name, 'r') as f:
-        headers = f.read().strip()
-    # remove header file
-    os.remove(headerf.name)
-
-    for loop, line in enumerate(headers.split('\n')):
-        if loop == 0:
-            p1, p2 = tuple(line.split('/'))
-            print(green(p1) + grayscale[14]('/') + cyan(p2))
+    #=========================================================================================#
+    def getData(cmd):
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=cmd_env) 
+        out, err = p.communicate() # Send data to stdin, read data from stdout and stderr, until EOF reached. Returns a tuple(stdout_data, stderr_data)
+        if PY3:
+            out, err = out.decode(), err.decode()
+        if p.returncode == 0:
+            print("error")
+            print(grayscale[16](err))
         else:
-            pos = line.find(':')
-            print(grayscale[14](line[:pos + 1]) + cyan(line[pos + 1:]))
+            print("TEST: where to print the _cmd")
+            print("cmd : " + cmd)
+            _cmd = list(cmd)
+            _cmd[2] = '<output-format>'
+            _cmd[4] = '<tempfile>'
+            _cmd[6] = '<tempfile>'
+            print(_cmd)
+            print('> {}'.format(' '.join(_cmd)))
+            quit(yellow('curl error: {}'.format(err)), p.returncode)
 
-    print()
+        # parse output
+        try:
+            d = json.loads(out)
+            print(" JSON ")
+            print(d)
+        except ValueError as e:
+            print(yellow('Could not decode json: {}'.format(e)))
+            print('curl result:', p.returncode, grayscale[16](out), grayscale[16](err))
+            quit(None, 1)
+        for k in d:
+            if k.startswith('time_'):
+                d[k] = int(d[k] * 1000)
 
-    # body
-    show_body = os.environ.get(ENV_SHOW_BODY, 'false')
-    show_body = 'true' in show_body.lower()
-    if show_body:
-        body_limit = 1024
-        with open(bodyf.name, 'r') as f:
-            body = f.read().strip()
-        if len(body) > body_limit:
-            print(body[:body_limit] + '... (more in {})'.format(bodyf.name))
+        # calculate ranges
+        d.update(
+            range_dns=d['time_namelookup'],
+            range_connection=d['time_connect'] - d['time_namelookup'],
+            range_ssl=d['time_pretransfer'] - d['time_connect'],
+            range_server=d['time_starttransfer'] - d['time_pretransfer'],
+            range_transfer=d['time_total'] - d['time_starttransfer'],
+        )
+        return d
+
+    if (need_average_speed == False):
+        d = getData(cmd)
+        with open(headerf.name, 'r') as f:
+            headers = f.read().strip()
+        # remove header file
+        os.remove(headerf.name)
+
+        for loop, line in enumerate(headers.split('\n')):
+            if loop == 0:
+                p1, p2 = tuple(line.split('/'))
+                print(green(p1) + grayscale[14]('/') + cyan(p2))
+            else:
+                pos = line.find(':')
+                print(grayscale[14](line[:pos + 1]) + cyan(line[pos + 1:]))
+
+        # body
+        show_body = os.environ.get(ENV_SHOW_BODY, 'false')
+        show_body = 'true' in show_body.lower()
+        if show_body:
+            body_limit = 1024
+            with open(bodyf.name, 'r') as f:
+                body = f.read().strip()
+            if len(body) > body_limit:
+                print(body[:body_limit] + '... (more in {})'.format(bodyf.name))
+            else:
+                print(body)
         else:
-            print(body)
+            print('{} stored in: {}'.format(green('Body'), bodyf.name))
+
+        # print stat
+        if url.startswith('https://'):
+            template = https_template
+        else:
+            template = http_template
+
+        # colorize template first line
+        tpl_parts = template.split('\n')
+        tpl_parts[0] = grayscale[16](tpl_parts[0])
+        template = '\n'.join(tpl_parts)
+
+        def fmta(s):
+            return cyan('{:^7}'.format(str(s) + 'ms'))
+
+        def fmtb(s):
+            return cyan('{:<7}'.format(str(s) + 'ms'))
+
+        stat = template.format(
+            # a
+            a0000=fmta(d['range_dns']),
+            a0001=fmta(d['range_connection']),
+            a0002=fmta(d['range_ssl']),
+            a0003=fmta(d['range_server']),
+            a0004=fmta(d['range_transfer']),
+            # b
+            b0000=fmtb(d['time_namelookup']),
+            b0001=fmtb(d['time_connect']),
+            b0002=fmtb(d['time_pretransfer']),
+            b0003=fmtb(d['time_starttransfer']),
+            b0004=fmtb(d['time_total']),
+        )
+
+        print()
+        print(stat)
+
+        # speed, originally bytes per second
+        show_speed = os.environ.get(ENV_SHOW_SPEED, 'false')
+        show_speed = 'true' in show_speed.lower()
+        if show_speed:
+            print('speed_download: {:.1f} KiB, speed_upload: {:.1f} KiB'.format(
+                d['speed_download'] / 1024, d['speed_upload'] / 1024))
+
     else:
-        print('{} stored in: {}'.format(green('Body'), bodyf.name))
+        array = []
+        for i in range(0,5):
+            d = getData(cmd)
+            array.append(d)
 
-    # print stat
-    if url.startswith('https://'):
-        template = https_template
-    else:
-        template = http_template
+        with open(headerf.name, 'r') as f:
+            headers = f.read().strip()
+        # remove header file
+        os.remove(headerf.name)
+        for loop, line in enumerate(headers.split('\n')):
+            if loop == 0:
+                p1, p2 = tuple(line.split('/'))
+                print(green(p1) + grayscale[14]('/') + cyan(p2))
+            else:
+                pos = line.find(':')
+                print(grayscale[14](line[:pos + 1]) + cyan(line[pos + 1:]))
 
-    # colorize template first line
-    tpl_parts = template.split('\n')
-    tpl_parts[0] = grayscale[16](tpl_parts[0])
-    template = '\n'.join(tpl_parts)
+        # body
+        show_body = os.environ.get(ENV_SHOW_BODY, 'false')
+        show_body = 'true' in show_body.lower()
+        if show_body:
+            body_limit = 1024
+            with open(bodyf.name, 'r') as f:
+                body = f.read().strip()
+            if len(body) > body_limit:
+                print(body[:body_limit] + '... (more in {})'.format(bodyf.name))
+            else:
+                print(body)
+        else:
+            print('{} stored in: {}'.format(green('Body'), bodyf.name))
 
-    def fmta(s):
-        return cyan('{:^7}'.format(str(s) + 'ms'))
+        # print stat
+        if url.startswith('https://'):
+            template = https_template
+        else:
+            template = http_template
 
-    def fmtb(s):
-        return cyan('{:<7}'.format(str(s) + 'ms'))
+        tpl_parts = template.split('\n')
+        tpl_parts[0] = grayscale[16](tpl_parts[0])
+        template = '\n'.join(tpl_parts)
 
-    stat = template.format(
-        # a
-        a0000=fmta(d['range_dns']),
-        a0001=fmta(d['range_connection']),
-        a0002=fmta(d['range_ssl']),
-        a0003=fmta(d['range_server']),
-        a0004=fmta(d['range_transfer']),
-        # b
-        b0000=fmtb(d['time_namelookup']),
-        b0001=fmtb(d['time_connect']),
-        b0002=fmtb(d['time_pretransfer']),
-        b0003=fmtb(d['time_starttransfer']),
-        b0004=fmtb(d['time_total']),
-    )
-    with open('./measuredSpeed.txt', 'w') as f:
-        #s =  str(d['range_dns']) + ' '+ str(d['range_connection'])+ ' '+ d['range_ssl'] + ' ' + d['range_server'] + d['range_transfer']
-         #   + '\n' + d['time_namelookup'] + ' ' +  d['time_connect'] +' '+ d['time_pretransfer'] + ' ' + d['time_starttransfer'] + ' '+ d['time_total'] + '\n'
-        s = str(d)
-        f.write(s)
+        def fmta(s):
+            return cyan('{:^7}'.format(str(s) + 'ms'))
 
-    print()
-    print(stat)
+        def fmtb(s):
+            return cyan('{:<7}'.format(str(s) + 'ms'))
 
-    # speed, originally bytes per second
-    show_speed = os.environ.get(ENV_SHOW_SPEED, 'false')
-    show_speed = 'true' in show_speed.lower()
-    if show_speed:
-        print('speed_download: {:.1f} KiB, speed_upload: {:.1f} KiB'.format(
-            d['speed_download'] / 1024, d['speed_upload'] / 1024))
+        stat = template.format(
+            # a
+            a0000=fmta(d['range_dns']),
+            a0001=fmta(d['range_connection']),
+            a0002=fmta(d['range_ssl']),
+            a0003=fmta(d['range_server']),
+            a0004=fmta(d['range_transfer']),
+            # b
+            b0000=fmtb(d['time_namelookup']),
+            b0001=fmtb(d['time_connect']),
+            b0002=fmtb(d['time_pretransfer']),
+            b0003=fmtb(d['time_starttransfer']),
+            b0004=fmtb(d['time_total']),
+        )
+        def getAverage(array, name):
+            sum = 0
+            for i in range(0,5):
+                sum += array[i][name]
+            return sum/5
 
+        stat = template.format(
+            # a
+            a0000=fmta(getAverage(array, 'range_dns')),
+            a0001=fmta(getAverage(array, 'range_connection')),
+            a0002=fmta(getAverage(array, 'range_ssl')),
+            a0003=fmta(getAverage(array, 'range_server')),
+            a0004=fmta(getAverage(array, 'range_transfer')),
+            # b
+            b0000=fmtb(getAverage(array, 'time_namelookup')),
+            b0001=fmtb(getAverage(array, 'time_connect')),
+            b0002=fmtb(getAverage(array, 'time_pretransfer')),
+            b0003=fmtb(getAverage(array, 'time_starttransfer')),
+            b0004=fmtb(getAverage(array, 'time_total')),
+        )
+
+        print()
+        print(stat)
+        # speed, originally bytes per second
+        show_speed = os.environ.get(ENV_SHOW_SPEED, 'false')
+        show_speed = 'true' in show_speed.lower()
+        if show_speed:
+            print
+            print('speed_download: {:.1f} KiB, speed_upload: {:.1f} KiB'.format(
+                getAverage(array,'speed_download') / 1024, getAverage(array,'speed_upload') / 1024))
+    
+#==========================================================
 
 if __name__ == '__main__':
     main()
