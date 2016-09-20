@@ -1,3 +1,8 @@
+# Authors Cathryn Callahan and Yanjiang Dong
+
+The new output we got from altering the color codes is:
+![screenshot](changed_output.png)
+
 <<<<<<< HEAD
 # httpstat
 
