@@ -5,7 +5,7 @@ The new output we got from altering the color codes is:
 
 <<<<<<< HEAD
 # httpstat
-
+shorttest
 curl statistics made simple.
 
 ![screenshot](screenshot.png)
