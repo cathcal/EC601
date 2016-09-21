@@ -7,6 +7,7 @@
 # http://blog.kenweiner.com/2014/11/http-request-timings-with-curl.html
 
 # Editing here
+# Trying to add to Caity Branch
 
 from __future__ import print_function
 
@@ -161,6 +162,7 @@ def main():
 
     cmd = cmd_core + curl_args + [url]
     #print(cmd)
+<<<<<<< HEAD
     #=========================================================================================#
     def getData(cmd):
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=cmd_env) 
@@ -274,6 +276,109 @@ def main():
         if show_speed:
             print('speed_download: {:.1f} KiB, speed_upload: {:.1f} KiB'.format(
                 d['speed_download'] / 1024, d['speed_upload'] / 1024))
+=======
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=cmd_env)
+    out, err = p.communicate()
+    if PY3:
+        out, err = out.decode(), err.decode()
+
+    # print stderr
+    if p.returncode == 0:
+        print(grayscale[16](err))
+    else:
+        _cmd = list(cmd)
+        _cmd[2] = '<output-format>'
+        _cmd[4] = '<tempfile>'
+        _cmd[6] = '<tempfile>'
+        print('> {}'.format(' '.join(_cmd)))
+        quit(yellow('curl error: {}'.format(err)), p.returncode)
+
+    # parse output
+    try:
+        d = json.loads(out)
+    except ValueError as e:
+        print(yellow('Could not decode json: {}'.format(e)))
+        print('curl result:', p.returncode, grayscale[16](out), grayscale[16](err))
+        quit(None, 1)
+    for k in d:
+        if k.startswith('time_'):
+            d[k] = int(d[k] * 1000)
+
+    # calculate ranges
+    d.update(
+        range_dns=d['time_namelookup'],
+        range_connection=d['time_connect'] - d['time_namelookup'],
+        range_ssl=d['time_pretransfer'] - d['time_connect'],
+        range_server=d['time_starttransfer'] - d['time_pretransfer'],
+        range_transfer=d['time_total'] - d['time_starttransfer'],
+    )
+
+    # print header & body summary
+    with open(headerf.name, 'r') as f:
+        headers = f.read().strip()
+    # remove header file
+    os.remove(headerf.name)
+
+    for loop, line in enumerate(headers.split('\n')):
+        if loop == 0:
+            p1, p2 = tuple(line.split('/'))
+            #print(magenta(p1) + grayscale[14]('/') + yellow(p2))
+            #Changed colors of 
+            print (magenta(p1) + green('/') + cyan(p2))
+        else:
+            pos = line.find(':')
+            print(grayscale[14](line[:pos + 1]) + yellow(line[pos + 1:]))
+
+    print()
+
+    # body
+    show_body = os.environ.get(ENV_SHOW_BODY, 'false')
+    show_body = 'true' in show_body.lower()
+    if show_body:
+        body_limit = 1024
+        with open(bodyf.name, 'r') as f:
+            body = f.read().strip()
+        if len(body) > body_limit:
+            print(body[:body_limit] + '... (more in {})'.format(bodyf.name))
+        else:
+            print(body)
+    else:
+        print('{} stored in: {}'.format(cyan('Body'), bodyf.name))
+
+    # print stat
+    if url.startswith('https://'):
+        template = https_template
+    else:
+        template = http_template
+
+    # colorize template first line
+    tpl_parts = template.split('\n')
+    tpl_parts[0] = grayscale[16](tpl_parts[0])
+    template = '\n'.join(tpl_parts)
+
+    def fmta(s):
+        return yellow('{:^7}'.format(str(s) + 'ms'))
+
+    def fmtb(s):
+        return yellow('{:<7}'.format(str(s) + 'ms'))
+
+    stat = template.format(
+        # a
+        a0000=fmta(d['range_dns']),
+        a0001=fmta(d['range_connection']),
+        a0002=fmta(d['range_ssl']),
+        a0003=fmta(d['range_server']),
+        a0004=fmta(d['range_transfer']),
+        # b
+        b0000=fmtb(d['time_namelookup']),
+        b0001=fmtb(d['time_connect']),
+        b0002=fmtb(d['time_pretransfer']),
+        b0003=fmtb(d['time_starttransfer']),
+        b0004=fmtb(d['time_total']),
+    )
+    print()
+    print(stat)
+>>>>>>> 1201b643bfc95dc38082b673b87ea9161c4fdb95
 
     else:
         array = []
