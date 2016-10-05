@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    api-level="24"
+    density="560dpi"
+    format="8"
+    plugin-version="2.2.0"
+    timestamp="6264651583863"
+    token="-106134445480661864"
+    verifier="FULL_BUILD_REQUESTED" >
+
+    <task
+        name="javac"
+        duration="89230" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="272" />
+    <task
+        name="verifier"
+        duration="15" />
+
+    <artifact
+        location="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/outputs/apk/tutorial-debug.apk"
+        type="MAIN" />
+
+    <build
+        timestamp="6264651583863"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/outputs/apk/tutorial-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>

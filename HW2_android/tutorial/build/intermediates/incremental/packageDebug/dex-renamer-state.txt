@@ -1,0 +1,7 @@
+#Sun Oct 02 11:08:04 EDT 2016
+base.0=/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_524647a11624f25d554c6287180277a6c268e4cf
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_db84a0a1b934268c9e401ed58243cc670344569e/classes.dex
+base.1=/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_db84a0a1b934268c9e401ed58243cc670344569e
+file.0=/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_524647a11624f25d554c6287180277a6c268e4cf/classes.dex

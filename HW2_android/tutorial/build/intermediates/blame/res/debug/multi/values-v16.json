@@ -1,0 +1,28 @@
+[
+    {
+        "outputFile": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 6,
+                    "endColumn": 12,
+                    "endOffset": 340
+                },
+                "from": {
+                    "file": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/res/values-v16/values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 258,
+                        "endLine": 8,
+                        "endColumn": 12,
+                        "endOffset": 543
+                    }
+                }
+            }
+        ]
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/res/merged/debug/drawable-mdpi-v4/identitytoolkit_idp_aol_icon.png",
+        "source": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/res/drawable-mdpi-v4/identitytoolkit_idp_aol_icon.png"
+    },
+    {
+        "merged": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/res/merged/debug/drawable-mdpi-v4/identitytoolkit_idp_linkedin_icon.png",
+        "source": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/res/drawable-mdpi-v4/identitytoolkit_idp_linkedin_icon.png"
+    },
+    {
+        "merged": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/res/merged/debug/drawable-mdpi-v4/identitytoolkit_idp_yahoo_icon.png",
+        "source": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/res/drawable-mdpi-v4/identitytoolkit_idp_yahoo_icon.png"
+    },
+    {
+        "merged": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/res/merged/debug/drawable-mdpi-v4/identitytoolkit_idp_google_icon.png",
+        "source": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/res/drawable-mdpi-v4/identitytoolkit_idp_google_icon.png"
+    },
+    {
+        "merged": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/res/merged/debug/drawable-mdpi-v4/identitytoolkit_idp_amazon_icon.png",
+        "source": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/res/drawable-mdpi-v4/identitytoolkit_idp_amazon_icon.png"
+    },
+    {
+        "merged": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/res/merged/debug/drawable-mdpi-v4/identitytoolkit_idp_microsoft_icon.png",
+        "source": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/res/drawable-mdpi-v4/identitytoolkit_idp_microsoft_icon.png"
+    },
+    {
+        "merged": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/res/merged/debug/drawable-mdpi-v4/identitytoolkit_idp_paypal_icon.png",
+        "source": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/res/drawable-mdpi-v4/identitytoolkit_idp_paypal_icon.png"
+    },
+    {
+        "merged": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/res/merged/debug/drawable-mdpi-v4/identitytoolkit_default_photo.png",
+        "source": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/res/drawable-mdpi-v4/identitytoolkit_default_photo.png"
+    },
+    {
+        "merged": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/res/merged/debug/drawable-mdpi-v4/identitytoolkit_idp_facebook_icon.png",
+        "source": "/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/res/drawable-mdpi-v4/identitytoolkit_idp_facebook_icon.png"
+    }
+]
