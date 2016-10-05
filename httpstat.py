@@ -21,7 +21,7 @@ import subprocess
 __version__ = '1.1.3'
 
 
-PY3 = sys.version_info >= (3,)
+PY3 = sys.version_info >= (3,)  # judge the python version
 
 if PY3:
     xrange = range
@@ -63,7 +63,7 @@ http_template = """
 """[1:]
 
 
-ISATTY = sys.stdout.isatty()
+ISATTY = sys.stdout.isatty() # returns True if the file is connected (is associated with a terminal device) to a tty(-like) device, else False.
 
 
 def make_color(code):
@@ -119,12 +119,14 @@ Environments:
 
 
 def main():
+
     args = sys.argv[1:]
     if not args:
         print_help()
         quit(None, 0)
 
     url = args[0]
+    need_average_speed = False
     if url in ['-h', '--help']:
         print_help()
         quit(None, 0)
@@ -133,6 +135,10 @@ def main():
         quit(None, 0)
 
     curl_args = args[1:]
+
+    if('*mas' in curl_args):
+        curl_args.remove('*mas')
+        need_average_speed = True
 
     # check curl args
     exclude_options = ['-w', '-D', '-o', '-s']
@@ -150,11 +156,127 @@ def main():
     # run cmd
     cmd_env = os.environ.copy()
     cmd_env.update(
-        LC_ALL='C',
+        LC_ALL='C', # override the $language, forces applications to use the default language for output.
     )
-    cmd_core = ['curl', '-w', curl_format, '-D', headerf.name, '-o', bodyf.name, '-s', '-S']
+    cmd_core = ['curl', '-w', curl_format, '-D', headerf.name, '-o', bodyf.name, '-s', '-S'] # curl command to transfer data to or from server. -w:write -D:dump header, write the protocol headers to the specified file. -o:output to a file. -s silent mode, don't show progress meter. -S: show error.
+
     cmd = cmd_core + curl_args + [url]
     #print(cmd)
+<<<<<<< HEAD
+    #=========================================================================================#
+    def getData(cmd):
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=cmd_env) 
+        out, err = p.communicate() # Send data to stdin, read data from stdout and stderr, until EOF reached. Returns a tuple(stdout_data, stderr_data)
+        if PY3:
+            out, err = out.decode(), err.decode()
+        if p.returncode == 0:
+            print("error")
+            print(grayscale[16](err))
+        else:
+            print("TEST: where to print the _cmd")
+            print("cmd : " + cmd)
+            _cmd = list(cmd)
+            _cmd[2] = '<output-format>'
+            _cmd[4] = '<tempfile>'
+            _cmd[6] = '<tempfile>'
+            print(_cmd)
+            print('> {}'.format(' '.join(_cmd)))
+            quit(yellow('curl error: {}'.format(err)), p.returncode)
+
+        # parse output
+        try:
+            d = json.loads(out)
+            print(" JSON ")
+            print(d)
+        except ValueError as e:
+            print(yellow('Could not decode json: {}'.format(e)))
+            print('curl result:', p.returncode, grayscale[16](out), grayscale[16](err))
+            quit(None, 1)
+        for k in d:
+            if k.startswith('time_'):
+                d[k] = int(d[k] * 1000)
+
+        # calculate ranges
+        d.update(
+            range_dns=d['time_namelookup'],
+            range_connection=d['time_connect'] - d['time_namelookup'],
+            range_ssl=d['time_pretransfer'] - d['time_connect'],
+            range_server=d['time_starttransfer'] - d['time_pretransfer'],
+            range_transfer=d['time_total'] - d['time_starttransfer'],
+        )
+        return d
+
+    if (need_average_speed == False):
+        d = getData(cmd)
+        with open(headerf.name, 'r') as f:
+            headers = f.read().strip()
+        # remove header file
+        os.remove(headerf.name)
+
+        for loop, line in enumerate(headers.split('\n')):
+            if loop == 0:
+                p1, p2 = tuple(line.split('/'))
+                print(green(p1) + grayscale[14]('/') + cyan(p2))
+            else:
+                pos = line.find(':')
+                print(grayscale[14](line[:pos + 1]) + cyan(line[pos + 1:]))
+
+        # body
+        show_body = os.environ.get(ENV_SHOW_BODY, 'false')
+        show_body = 'true' in show_body.lower()
+        if show_body:
+            body_limit = 1024
+            with open(bodyf.name, 'r') as f:
+                body = f.read().strip()
+            if len(body) > body_limit:
+                print(body[:body_limit] + '... (more in {})'.format(bodyf.name))
+            else:
+                print(body)
+        else:
+            print('{} stored in: {}'.format(green('Body'), bodyf.name))
+
+        # print stat
+        if url.startswith('https://'):
+            template = https_template
+        else:
+            template = http_template
+
+        # colorize template first line
+        tpl_parts = template.split('\n')
+        tpl_parts[0] = grayscale[16](tpl_parts[0])
+        template = '\n'.join(tpl_parts)
+
+        def fmta(s):
+            return cyan('{:^7}'.format(str(s) + 'ms'))
+
+        def fmtb(s):
+            return cyan('{:<7}'.format(str(s) + 'ms'))
+
+        stat = template.format(
+            # a
+            a0000=fmta(d['range_dns']),
+            a0001=fmta(d['range_connection']),
+            a0002=fmta(d['range_ssl']),
+            a0003=fmta(d['range_server']),
+            a0004=fmta(d['range_transfer']),
+            # b
+            b0000=fmtb(d['time_namelookup']),
+            b0001=fmtb(d['time_connect']),
+            b0002=fmtb(d['time_pretransfer']),
+            b0003=fmtb(d['time_starttransfer']),
+            b0004=fmtb(d['time_total']),
+        )
+
+        print()
+        print(stat)
+
+        # speed, originally bytes per second
+        show_speed = os.environ.get(ENV_SHOW_SPEED, 'false')
+        show_speed = 'true' in show_speed.lower()
+        if show_speed:
+            print('speed_download: {:.1f} KiB, speed_upload: {:.1f} KiB'.format(
+                d['speed_download'] / 1024, d['speed_upload'] / 1024))
+=======
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=cmd_env)
     out, err = p.communicate()
     if PY3:
@@ -256,14 +378,102 @@ def main():
     )
     print()
     print(stat)
+>>>>>>> 1201b643bfc95dc38082b673b87ea9161c4fdb95
 
-    # speed, originally bytes per second
-    show_speed = os.environ.get(ENV_SHOW_SPEED, 'false')
-    show_speed = 'true' in show_speed.lower()
-    if show_speed:
-        print('speed_download: {:.1f} KiB, speed_upload: {:.1f} KiB'.format(
-            d['speed_download'] / 1024, d['speed_upload'] / 1024))
+    else:
+        array = []
+        for i in range(0,5):
+            d = getData(cmd)
+            array.append(d)
 
+        with open(headerf.name, 'r') as f:
+            headers = f.read().strip()
+        # remove header file
+        os.remove(headerf.name)
+        for loop, line in enumerate(headers.split('\n')):
+            if loop == 0:
+                p1, p2 = tuple(line.split('/'))
+                print(green(p1) + grayscale[14]('/') + cyan(p2))
+            else:
+                pos = line.find(':')
+                print(grayscale[14](line[:pos + 1]) + cyan(line[pos + 1:]))
+
+        # body
+        show_body = os.environ.get(ENV_SHOW_BODY, 'false')
+        show_body = 'true' in show_body.lower()
+        if show_body:
+            body_limit = 1024
+            with open(bodyf.name, 'r') as f:
+                body = f.read().strip()
+            if len(body) > body_limit:
+                print(body[:body_limit] + '... (more in {})'.format(bodyf.name))
+            else:
+                print(body)
+        else:
+            print('{} stored in: {}'.format(green('Body'), bodyf.name))
+
+        # print stat
+        if url.startswith('https://'):
+            template = https_template
+        else:
+            template = http_template
+
+        tpl_parts = template.split('\n')
+        tpl_parts[0] = grayscale[16](tpl_parts[0])
+        template = '\n'.join(tpl_parts)
+
+        def fmta(s):
+            return cyan('{:^7}'.format(str(s) + 'ms'))
+
+        def fmtb(s):
+            return cyan('{:<7}'.format(str(s) + 'ms'))
+
+        stat = template.format(
+            # a
+            a0000=fmta(d['range_dns']),
+            a0001=fmta(d['range_connection']),
+            a0002=fmta(d['range_ssl']),
+            a0003=fmta(d['range_server']),
+            a0004=fmta(d['range_transfer']),
+            # b
+            b0000=fmtb(d['time_namelookup']),
+            b0001=fmtb(d['time_connect']),
+            b0002=fmtb(d['time_pretransfer']),
+            b0003=fmtb(d['time_starttransfer']),
+            b0004=fmtb(d['time_total']),
+        )
+        def getAverage(array, name):
+            sum = 0
+            for i in range(0,5):
+                sum += array[i][name]
+            return sum/5
+
+        stat = template.format(
+            # a
+            a0000=fmta(getAverage(array, 'range_dns')),
+            a0001=fmta(getAverage(array, 'range_connection')),
+            a0002=fmta(getAverage(array, 'range_ssl')),
+            a0003=fmta(getAverage(array, 'range_server')),
+            a0004=fmta(getAverage(array, 'range_transfer')),
+            # b
+            b0000=fmtb(getAverage(array, 'time_namelookup')),
+            b0001=fmtb(getAverage(array, 'time_connect')),
+            b0002=fmtb(getAverage(array, 'time_pretransfer')),
+            b0003=fmtb(getAverage(array, 'time_starttransfer')),
+            b0004=fmtb(getAverage(array, 'time_total')),
+        )
+
+        print()
+        print(stat)
+        # speed, originally bytes per second
+        show_speed = os.environ.get(ENV_SHOW_SPEED, 'false')
+        show_speed = 'true' in show_speed.lower()
+        if show_speed:
+            print
+            print('speed_download: {:.1f} KiB, speed_upload: {:.1f} KiB'.format(
+                getAverage(array,'speed_download') / 1024, getAverage(array,'speed_upload') / 1024))
+    
+#==========================================================
 
 if __name__ == '__main__':
     main()
