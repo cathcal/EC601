@@ -1,0 +1,60 @@
+# Authors Cathryn Callahan and Yanjiang Dong
+
+The new output we got from altering the color codes is:
+![screenshot](changed_output.png)
+
+<<<<<<< HEAD
+# httpstat
+<<<<<<< HEAD
+HERE IS A TEST
+This is a message.
+=======
+shorttest
+>>>>>>> origin/master
+curl statistics made simple.
+
+![screenshot](screenshot.png)
+
+
+httpstat is a **single file🌟** Python script that has **no dependency👏** and is compatible with **Python 3🍻**.
+
+
+## Installation
+
+There are three ways to get `httpstat`:
+
+- Download the script directly: `wget https://raw.githubusercontent.com/reorx/httpstat/master/httpstat.py`
+
+- Install through pip: `pip install httpstat`
+
+- Install through homebrew (macOS only): `brew install httpstat`
+
+
+## Usage
+
+Just pass a url with it:
+
+```bash
+python httpstat.py httpbin.org/get
+```
+
+By default it will write response body in a tempfile, but you can let it print out by setting `HTTPSTAT_SHOW_BODY=true`:
+
+```bash
+HTTPSTAT_SHOW_BODY=true python httpstat.py httpbin.org/get
+```
+
+You can pass any curl supported arguments after the url (except for `-w`, `-D`, `-o`, `-s`, `-S` which are already used by httpstat):
+
+```bash
+HTTPSTAT_SHOW_BODY=true python httpstat.py httpbin.org/post -X POST --data-urlencode "a=中文" -v
+```
+You can get the average connection speed by adding *mas after the url which measures the average speed of five times connection.
+```bash
+python httpstat.py httpbin.org/post *mas
+```
+=======
+# EC601
+# EC601
+# EC601
+>>>>>>> bec4aaa8265fe531636b1b575fa61606a112c9be
