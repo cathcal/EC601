@@ -1,0 +1,127 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:18:1-78:12
+	package
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:19:5-46
+	android:versionName
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:21:5-32
+		INJECTED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml
+		INJECTED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml
+	android:versionCode
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:20:5-28
+		INJECTED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml
+		INJECTED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:18:11-69
+uses-sdk
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:23:5-25:41
+MERGED from [com.google.android.gms:play-services:6.1.11] /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.1.11/AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:20.0.0] /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/AndroidManifest.xml:16:5-42
+MERGED from [:identitytoolkit-api11:] /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/AndroidManifest.xml:20:5-22:41
+	android:targetSdkVersion
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:25:9-38
+		INJECTED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml
+		INJECTED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:24:9-35
+		INJECTED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml
+		INJECTED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:27:5-67
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:27:22-64
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:28:5-71
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:28:22-68
+uses-permission#android.permission.USE_CREDENTIALS
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:29:5-74
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:29:22-71
+application
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:31:5-76:19
+MERGED from [com.google.android.gms:play-services:6.1.11] /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.1.11/AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:20.0.0] /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/AndroidManifest.xml:17:5-19
+MERGED from [:identitytoolkit-api11:] /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/AndroidManifest.xml:24:5-20
+	android:label
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:34:9-41
+	android:allowBackup
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:32:9-35
+	android:icon
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:33:9-45
+	android:theme
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:35:9-40
+activity#com.google.identitytoolkit.demo.GitkitDemo
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:36:9-55:20
+	android:label
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:38:13-45
+	android:launchMode
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:39:13-44
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:37:13-70
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:40:13-44:29
+action#android.intent.action.MAIN
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:41:17-69
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:41:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:43:17-77
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:43:27-74
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:45:13-54:29
+action#android.intent.action.VIEW
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:46:17-69
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:46:25-66
+category#android.intent.category.DEFAULT
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:48:17-76
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:48:27-73
+category#android.intent.category.BROWSABLE
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:49:17-78
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:49:27-75
+data
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:51:17-53:113
+	android:host
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:52:21-42
+	android:scheme
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:53:21-110
+meta-data#com.google.android.gms.version
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:57:9-59:69
+	android:value
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:59:13-66
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:58:13-58
+meta-data#identitytoolkit.show_providers
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:60:9-62:38
+	android:value
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:62:13-35
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:61:13-58
+meta-data#identitytoolkit.use_google_plus
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:63:9-65:37
+	android:value
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:65:13-34
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:64:13-59
+meta-data#identitytoolkit.api_key
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:67:9-69:71
+	android:value
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:69:13-68
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:68:13-51
+meta-data#identitytoolkit.server_client_id
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:70:9-72:104
+	android:value
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:72:13-101
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:71:13-60
+meta-data#identitytoolkit.server_widget_url
+ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:73:9-75:58
+	android:value
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:75:13-55
+	android:name
+		ADDED from /Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/AndroidManifest.xml:74:13-61

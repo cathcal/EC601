@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/identitytoolkit-api11/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="48deb978c83e7f640b55e11a368eb5688c62cd60">
+        <dex dex="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/intermediates-exploded-aar-identitytoolkit-api11_c9fbe20024eb23aa080f90827e0d5e3e7282808a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="a4867db7b5cacaf2f4d9263607e1f4ad6e71c475">
+        <dex dex="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_524647a11624f25d554c6287180277a6c268e4cf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/caitycallahan/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
+        <dex dex="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-20.0.0_c0f71b7adf8a7d01cb2de3db1b4732625bd74af8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="e52dcfe0e978c2cd47be916923a4f91a089b6b92">
+        <dex dex="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_db84a0a1b934268c9e401ed58243cc670344569e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/jars/libs/internal_impl-20.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
+        <dex dex="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-20.0.0_1eaa187943b815bd02e09004dd7090a17d4e726f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.1.11/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="0f700f6802ba1a1f1fa7ac26d5db0666a89d75a6">
+        <dex dex="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-6.1.11_4a70a6f29d919a5fff103e54fbb45f516033aa27/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
+        <dex dex="/Users/caitycallahan/Documents/EC601-A1 PRODUCT DESIGN/identity-toolkit-android-master 2/tutorial/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-20.0.0_39ddbcaee53b6ffaab8fb62c649fd82340f539fd/classes.dex" />
+    </item>
+
+</items>
