@@ -1,0 +1,40 @@
+:Monkey: seed=1480498554290 count=100
+:AllowPackage: com.google.identitytoolkit.demo
+:IncludeCategory: android.intent.category.LAUNCHER
+:IncludeCategory: android.intent.category.MONKEY
+// Event percentages:
+//   0: 15.0%
+//   1: 10.0%
+//   2: 2.0%
+//   3: 15.0%
+//   4: -0.0%
+//   5: -0.0%
+//   6: 25.0%
+//   7: 15.0%
+//   8: 2.0%
+//   9: 2.0%
+//   10: 1.0%
+//   11: 13.0%
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.google.identitytoolkit.demo/.GitkitDemo;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.google.identitytoolkit.demo/.GitkitDemo } in package com.google.identitytoolkit.demo
+:Sending Touch (ACTION_DOWN): 0:(1116.0,1715.0)
+:Sending Touch (ACTION_UP): 0:(1120.9427,1722.8611)
+:Sending Trackball (ACTION_MOVE): 0:(1.0,-1.0)
+:Sending Trackball (ACTION_MOVE): 0:(3.0,-3.0)
+:Sending Touch (ACTION_DOWN): 0:(1186.0,1004.0)
+:Sending Touch (ACTION_UP): 0:(1166.5762,969.34216)
+:Sending Touch (ACTION_DOWN): 0:(449.0,146.0)
+:Sending Touch (ACTION_UP): 0:(423.83408,247.15001)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,2.0)
+:Sending Touch (ACTION_DOWN): 0:(877.0,2261.0)
+:Sending Touch (ACTION_UP): 0:(884.6283,2246.5645)
+:Sending Trackball (ACTION_MOVE): 0:(3.0,3.0)
+:Sending Touch (ACTION_DOWN): 0:(1283.0,1553.0)
+:Sending Touch (ACTION_UP): 0:(1300.8333,1558.1396)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,-2.0)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,4.0)
+Events injected: 100
+:Sending rotation degree=0, persist=false
+:Dropped: keys=0 pointers=0 trackballs=0 flips=0 rotations=0
+## Network stats: elapsed time=355ms (0ms mobile, 0ms wifi, 355ms not connected)
+// Monkey finished
